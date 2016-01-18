@@ -1,0 +1,23 @@
+%nav.navbar.navbar-light.bg-faded
+  %button.navbar-toggler.hidden-sm-up{"data-target" => "#exCollapsingNavbar2", "data-toggle" => "collapse", :type => "button"}
+    ☰
+  #exCollapsingNavbar2.collapse.navbar-toggleable-xs
+    %a.navbar-brand{:href => "#"} Responsive navbar
+    %ul.nav.navbar-nav
+      %li.nav-item.active
+        %a.nav-link{:href => "#"}
+          Home
+          %span.sr-only (current)
+      %li.nav-item
+        %a.nav-link{:href => "#"} Features
+      %li.nav-item
+        %a.nav-link{:href => "#"} Pricing
+      %li.nav-item
+        %a.nav-link{:href => "#"} About
+    %ul.nav.navbar-nav.pull-right
+      - if user_signed_in?
+        %li.nav-item
+          = link_to "Sign out", destroy_user_session_path, :method => :delete, class: "nav-link"
+      - else
+        %li.nav-item
+          = link_to "Sign in", new_user_registration_path, class: "nav-link"

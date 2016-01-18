@@ -1,0 +1,21 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %meta{:content => "ie=edge", "http-equiv" => "x-ua-compatible"}/
+    %title Runonrails
+    = display_meta_tags :og => {:site => @meta_site_name, :title => "#{@meta_title} | #{@meta_subtitle}", :description => @meta_description, :keywords => @meta_keywords, :type => @meta_type, :url => request.original_url, :prev => "#{request.referer}", image: @meta_image}
+    %link{:href => "https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css", :rel => "stylesheet"}/
+    %link{:href => "https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css", :rel => "stylesheet"}/
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"}
+    %script{:src => "https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"}
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .text-center= render 'layouts/alerts'
+    %div= render 'layouts/navigation'
+    = yield
+    = render 'shared/integrations/ga'
