@@ -1,0 +1,14 @@
+= simple_form_for(@generator) do |f|
+  = f.error_notification
+
+  .form-inputs
+    .form-group
+      = f.input :name, input_html: { class: "form-control" }
+    .form-group
+      = f.input :is_private
+
+    .form-group
+      = f.association :snippets, as: :check_boxes, label: false
+
+  .form-actions
+    = f.button :submit, class: "btn btn-primary"

@@ -1,0 +1,25 @@
+%h1 Generators
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Is private
+      %th Author
+      %th
+      %th
+      %th
+
+  %tbody
+    - @generators.each do |generator|
+      %tr
+        %td= generator.name
+        %td= generator.is_private
+        %td= generator.author_id
+        %td= link_to 'Show', generator
+        %td= link_to 'Edit', edit_generator_path(generator)
+        %td= link_to 'Destroy', generator, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Generator', new_generator_path, class: "btn btn-primary"

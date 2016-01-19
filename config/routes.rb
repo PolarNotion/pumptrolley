@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :generators
   resources :snippets
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', passwords: 'users/passwords' }
 

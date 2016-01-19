@@ -1,0 +1,22 @@
+
+%h1
+  = @generator.name
+%p
+  %b Is private:
+  = @generator.is_private
+%p
+  %b Author:
+  = @generator.author_id
+
+%p
+  - @generator.snippets.each do |snippet|
+    %p
+      = snippet.name
+
+%p
+  rails new #{@generator.name.parameterize} -m
+  = generator_url(format: :rb)
+
+= link_to 'Edit', edit_generator_path(@generator)
+\|
+= link_to 'Back', generators_path
