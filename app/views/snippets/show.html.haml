@@ -1,0 +1,29 @@
+%h1
+  = @snippet.name
+%pre
+  = @snippet.content.html_safe
+%p
+  %b Followup content:
+  = @snippet.followup_content
+%p
+  %b Tags:
+  = @snippet.tags
+%p
+  %b Registration url:
+  = @snippet.registration_url
+%p
+  %b Documentation url:
+  = @snippet.documentation_url
+%p
+  %b Is private:
+  = @snippet.is_private
+%p
+  %b Parent:
+  = @snippet.parent_id
+%p
+  %b Author:
+  = @snippet.author_id
+
+= link_to 'Edit', edit_snippet_path(@snippet)
+\|
+= link_to 'Back', snippets_path

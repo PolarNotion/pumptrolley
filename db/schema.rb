@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160118234444) do
+ActiveRecord::Schema.define(version: 20160119102611) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -25,6 +25,21 @@ ActiveRecord::Schema.define(version: 20160118234444) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+
+  create_table "snippets", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.text     "content"
+    t.text     "followup_content"
+    t.string   "tags"
+    t.string   "registration_url"
+    t.string   "documentation_url"
+    t.boolean  "is_private",        default: false, null: false
+    t.integer  "parent_id"
+    t.integer  "author_id"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false

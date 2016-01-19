@@ -1,0 +1,27 @@
+= simple_form_for(@snippet) do |f|
+  = f.error_notification
+
+  .form-inputs
+    .form-group
+      = f.input :name, input_html: { class: "form-control" }
+    .form-group
+      = f.input :description, input_html: { class: "form-control" }
+    .form-group
+      = f.input :content, input_html: { class: "form-control" }
+    .form-group
+      = f.input :followup_content, input_html: { class: "form-control" }
+    .form-group
+      = f.input :tags, input_html: { class: "form-control" }
+    .form-group
+      = f.input :registration_url, input_html: { class: "form-control" }
+    .form-group
+      = f.input :documentation_url, input_html: { class: "form-control" }
+    .form-group
+      = f.input :is_private
+    .form-group
+      = f.input :parent_id, input_html: { class: "form-control" }
+    .form-group
+      = f.input :author_id, input_html: { class: "form-control" }
+
+  .form-actions
+    = f.button :submit, class: "btn btn-primary"

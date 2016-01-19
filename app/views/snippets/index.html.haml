@@ -1,0 +1,35 @@
+%h1 Snippets
+
+%table.table
+  //%thead
+  //  %tr
+  //    %th Name
+  //    %th Description
+  //    %th Content
+  //    %th Followup content
+  //    %th Tags
+  //    %th Registration url
+  //    %th Documentation url
+  //    %th Is private
+  //    %th Parent
+  //    %th Author
+  //    %th
+  //    %th
+  //    %th
+
+  %tbody
+    - @snippets.each do |snippet|
+      %tr
+        %td
+          %strong
+            = link_to snippet.name, snippet
+          %br
+          = snippet.description
+        %td.text-right
+          %br
+          - snippet.tags.split(",").each do |tag|
+            = link_to tag, url_for(tag: tag), class: "btn btn-link btn-sm"
+
+%br
+
+= link_to 'New Snippet', new_snippet_path, class: "btn btn-primary"

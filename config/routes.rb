@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :snippets
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', passwords: 'users/passwords' }
 
   # The priority is based upon order of creation: first created -> highest priority.
