@@ -1,22 +1,23 @@
 
-%h1
+%h1.text-center
   = @generator.name
-%p
-  %b Is private:
-  = @generator.is_private
-%p
-  %b Author:
-  = @generator.author_id
+
+%p.small.text-muted.text-center
+  %em
+    By
+    = @generator.author.email
+
+%h3
+  Snippets
+- @generator.snippets.each do |snippet|
+  %p
+    = snippet.name
 
 %p
-  - @generator.snippets.each do |snippet|
-    %p
-      = snippet.name
+  = link_to "View Source", generator_url(format: :rb), class: "btn btn-default btn-sm"
 
-%p
+%h3
+  Usage
+%pre.text-center
   rails new #{@generator.name.parameterize} -m
   = generator_url(format: :rb)
-
-= link_to 'Edit', edit_generator_path(@generator)
-\|
-= link_to 'Back', generators_path

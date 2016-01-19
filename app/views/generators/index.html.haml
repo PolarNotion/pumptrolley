@@ -7,8 +7,6 @@
       %th Is private
       %th Author
       %th
-      %th
-      %th
 
   %tbody
     - @generators.each do |generator|
@@ -16,9 +14,8 @@
         %td= generator.name
         %td= generator.is_private
         %td= generator.author_id
-        %td= link_to 'Show', generator
-        %td= link_to 'Edit', edit_generator_path(generator)
-        %td= link_to 'Destroy', generator, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td.text-right
+          = link_to 'Show', generator, class: "btn btn-default btn-sm"
 
 %br
 

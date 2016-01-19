@@ -1,4 +1,5 @@
 class GeneratorsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_generator, only: [:show, :edit, :update, :destroy]
 
   # GET /generators
@@ -18,7 +19,7 @@ class GeneratorsController < ApplicationController
 
   # GET /generators/new
   def new
-    @generator = Generator.new
+    @generator = current_user.generators.new
   end
 
   # GET /generators/1/edit
@@ -28,7 +29,7 @@ class GeneratorsController < ApplicationController
   # POST /generators
   # POST /generators.json
   def create
-    @generator = Generator.new(generator_params)
+    @generator = current_user.generators.new(generator_params)
 
     respond_to do |format|
       if @generator.save

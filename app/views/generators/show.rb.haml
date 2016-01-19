@@ -1,3 +1,6 @@
-
+= "# #{@generator.name}"
 - @generator.snippets.each do |snippet|
+  = "# Start #{snippet.name}"
   = snippet.content.html_safe
+  = "# End #{snippet.name}"
+
