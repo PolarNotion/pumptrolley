@@ -33,6 +33,8 @@ gem 'haml-rails', '~> 0.9'
 
 gem 'codemirror-rails', '~> 5.6'
 
+gem 'acts_as_list'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

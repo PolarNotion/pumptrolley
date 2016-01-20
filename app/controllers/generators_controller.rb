@@ -13,10 +13,6 @@ class GeneratorsController < ApplicationController
   # GET /generators/1
   # GET /generators/1.json
   def show
-    respond_to do |format|
-      format.html
-      format.rb
-    end
   end
 
   # GET /generators/new

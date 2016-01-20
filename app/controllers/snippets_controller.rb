@@ -15,7 +15,7 @@ class SnippetsController < ApplicationController
 
   # GET /snippets/new
   def new
-    @snippet = Snippet.new
+    @snippet = current_user.snippets.new
 
   end
 
@@ -26,7 +26,7 @@ class SnippetsController < ApplicationController
   # POST /snippets
   # POST /snippets.json
   def create
-    @snippet = Snippet.new(snippet_params)
+    @snippet = current_user.snippets.new(snippet_params)
 
     respond_to do |format|
       if @snippet.save

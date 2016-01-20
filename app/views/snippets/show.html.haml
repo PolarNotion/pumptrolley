@@ -1,15 +1,18 @@
 %h1
   = @snippet.name
 
-%pre
-  = raw @snippet.install_content.html_safe
 
-%p
-  %b Followup content:
-  = @snippet.followup_content
-%p
-  %b Tags:
-  = @snippet.tags
+= @snippet.install_content
+
+- if @snippet.followup_content.present?
+  %p
+    %b Followup content:
+    = @snippet.followup_content
+
+%ul.list-inline.text-right
+  - @snippet.tags.split(",").each do |tag|
+    %li
+      = link_to tag, url_for(tag: tag)
 %p
   %b Registration url:
   = @snippet.registration_url
@@ -24,8 +27,6 @@
   = @snippet.parent_id
 %p
   %b Author:
-  = @snippet.author_id
+  = @snippet.author.email
 
 = link_to 'Edit', edit_snippet_path(@snippet)
-\|
-= link_to 'Back', snippets_path
