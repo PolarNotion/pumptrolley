@@ -4,19 +4,26 @@
   %thead
     %tr
       %th Name
-      %th Is private
-      %th Author
+      %th Command Line Script
       %th
 
   %tbody
     - @generators.each do |generator|
       %tr
-        %td= generator.name
-        %td= generator.is_private
-        %td= generator.author_id
+        %td
+          = link_to generator.name, generator
+        %td
+          .text-editor
+            rails new #{generator.name.parameterize} -m
+            = generator_url(generator, format: :rb)
         %td.text-right
-          = link_to 'Show', generator, class: "btn btn-default btn-sm"
+          = link_to "Source", generator_url(generator, format: :rb), target: "_blank", class: "btn text-muted btn-sm"
+
+  %tfoot
+    %tr
+      %td{ colspan: 3 }
 
 %br
 
-= link_to 'New Generator', new_generator_path, class: "btn btn-primary"
+.text-center
+  = link_to 'New Generator', new_generator_path, class: "btn btn-primary"

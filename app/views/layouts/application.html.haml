@@ -23,7 +23,9 @@
     = render 'layouts/alerts'
     = render 'layouts/navigation'
 
-    .container
+    #main_content.container
       = yield
     
     = render 'shared/integrations/ga'
+
+    %footer.footer

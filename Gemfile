@@ -31,6 +31,8 @@ gem 'devise'
 gem 'meta-tags'
 gem 'haml-rails', '~> 0.9'
 
+gem 'codemirror-rails', '~> 5.6'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

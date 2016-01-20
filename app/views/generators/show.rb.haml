@@ -1,6 +1,12 @@
-= "# #{@generator.name}"
+= "# Generator: #{@generator.name}"
+= "# Author: #{@generator.author.email}"
+= "# Created via Polar Notion's Generator Tool"
+
 - @generator.snippets.each do |snippet|
-  = "# Start #{snippet.name}"
-  = snippet.content.html_safe
+  \
+  = "####################################################"
+  \
+  = "# Start #{snippet.name} Install"
+  = snippet.install_content.html_safe
   = "# End #{snippet.name}"
 

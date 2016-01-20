@@ -5,7 +5,8 @@ class GeneratorsController < ApplicationController
   # GET /generators
   # GET /generators.json
   def index
-    @generators = Generator.all
+    @generators = current_user.generators.all
+    @fizzbuzz = "morgan"
   end
 
   # GET /generators/1
@@ -74,6 +75,9 @@ class GeneratorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def generator_params
-      params.require(:generator).permit(:name, :is_private, :author_id, snippet_ids: [])
+      params.require(:generator).permit(:name,
+                                        :is_private,
+                                        :author_id,
+                                        snippet_ids: [])
     end
 end

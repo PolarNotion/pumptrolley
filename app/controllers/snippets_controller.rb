@@ -1,4 +1,5 @@
 class SnippetsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_snippet, only: [:show, :edit, :update, :destroy]
 
   # GET /snippets
@@ -15,6 +16,7 @@ class SnippetsController < ApplicationController
   # GET /snippets/new
   def new
     @snippet = Snippet.new
+
   end
 
   # GET /snippets/1/edit
@@ -71,7 +73,7 @@ class SnippetsController < ApplicationController
     def snippet_params
       params.require(:snippet).permit(:name,
                                       :description,
-                                      :content,
+                                      :install_content,
                                       :followup_content,
                                       :tags,
                                       :registration_url,

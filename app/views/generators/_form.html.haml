@@ -3,12 +3,14 @@
 
   .form-inputs
     .form-group
-      = f.input :name, input_html: { class: "form-control" }
-    .form-group
-      = f.input :is_private
+      = f.input :name, input_html: { class: "form-control texteditor" }
+      .privacy-option
+        = f.input :is_private, label: "Private"
 
     .form-group
-      = f.association :snippets, as: :check_boxes, label: false
+      %label
+        Select Snippets
+      = f.association :snippets, as: :check_boxes, collection: Snippet.order(:name).map { |x| ["<strong>#{x.name}</strong><br>#{x.description}".html_safe, x.id] },  label: false
 
-  .form-actions
+  .form-actions.text-center
     = f.button :submit, class: "btn btn-primary"

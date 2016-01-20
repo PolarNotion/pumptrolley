@@ -1,7 +1,9 @@
 %h1
   = @snippet.name
+
 %pre
-  = @snippet.content.html_safe
+  = raw @snippet.install_content.html_safe
+
 %p
   %b Followup content:
   = @snippet.followup_content

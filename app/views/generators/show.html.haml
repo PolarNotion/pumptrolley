@@ -1,23 +1,24 @@
-
 %h1.text-center
   = @generator.name
 
-%p.small.text-muted.text-center
-  %em
-    By
-    = @generator.author.email
+.container-md
+  %p.small.text-muted.text-center
+    %em
+      By
+      = @generator.author.email
 
-%h3
-  Snippets
-- @generator.snippets.each do |snippet|
-  %p
-    = snippet.name
+  .text-center
+    %p
+      You can now use the link below to generate your Rail Application.
+    %pre
+      rails new #{@generator.name.parameterize} -m
+      = generator_url(format: :rb)
 
-%p
-  = link_to "View Source", generator_url(format: :rb), class: "btn btn-default btn-sm"
-
-%h3
-  Usage
-%pre.text-center
-  rails new #{@generator.name.parameterize} -m
-  = generator_url(format: :rb)
+    %hr
+    
+    %ul.list-inline
+      %li
+        = link_to "View Source", generator_url(format: :rb), target: "_blank", class: "btn text-muted btn-sm"
+      - if current_user.can_edit_generator(@generator.id)
+        %li
+          = link_to "Edit Generator", edit_generator_path, class: "btn text-muted btn-sm"
