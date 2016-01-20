@@ -5,7 +5,8 @@ class GeneratorsController < ApplicationController
   # GET /generators
   # GET /generators.json
   def index
-    @generators = current_user.generators.all
+    @personal_generators = current_user.generators.all
+    @public_generators   = Generator.where.not(author_id: current_user.id).all
     @fizzbuzz = "morgan"
   end
 
@@ -21,6 +22,13 @@ class GeneratorsController < ApplicationController
   # GET /generators/new
   def new
     @generator = current_user.generators.new
+    
+    if params[:dup]
+      original_generator = Generator.find(params[:dup])
+      @generator         = original_generator
+      
+      @generator.name   += " Copy"
+    end
   end
 
   # GET /generators/1/edit

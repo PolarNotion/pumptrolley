@@ -5,6 +5,7 @@ html, body, input, button, select, textarea, optgroup, option, form, fieldset, t
 }
 
 label {
+  font-family: monospace,monospace;
   display: inline-block;
   max-width: 100%;
   margin-bottom: 2px;
@@ -22,6 +23,18 @@ h1 {
 pre {
   border: 0px !important;
   border-radius: 0px !important;
+}
+
+body.background-gray-light {
+  background-color: whitesmoke;
+}
+
+body.background-primary-light {
+  background-color: rgb(224, 241, 255);
+}
+
+.tab-content {
+  padding-top: 10px;
 }
 
 .navbar-text {
@@ -112,6 +125,12 @@ pre {
   margin-top: 0px;
 }
 
+.form-wrapper {
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
 .pad {
   padding: 20px 20px;
 }
@@ -150,6 +169,10 @@ pre {
 .pad-y-4x {
   padding-top: 80px;
   padding-bottom: 80px;
+}
+
+.pad-section {
+  padding: 60px 10px;
 }
 
 .background-white {
@@ -218,8 +241,22 @@ pre {
 .generator_snippets {
   .checkbox {
     border-bottom: 1px solid #ccc;
-    padding-bottom: 8px;
+    padding-bottom: 10px;
     margin-bottom: 15px;
+    input[type=checkbox] {
+      position: absolute;
+      top: 32%;
+    }
+    label {
+      position: relative;
+      min-height: 20px;
+      line-height: 16px;
+      padding-left: 20px;
+      margin-bottom: 0;
+      font-weight: 400;
+      cursor: pointer;
+      width: 100%;
+    }
   }
   .checkbox:last-child {
     border-bottom: 0px;

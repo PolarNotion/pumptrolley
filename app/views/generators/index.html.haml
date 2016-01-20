@@ -1,29 +1,23 @@
 %h1 Generators
 
-%table.table
-  %thead
-    %tr
-      %th Name
-      %th Command Line Script
-      %th
+/ Nav tabs
+.pull-right
+  = link_to 'New Generator', new_generator_path, class: "btn btn-primary btn-sm"
 
-  %tbody
-    - @generators.each do |generator|
-      %tr
-        %td
-          = link_to generator.name, generator
-        %td
-          .text-editor
-            rails new #{generator.name.parameterize} -m
-            = generator_url(generator, format: :rb)
-        %td.text-right
-          = link_to "Source", generator_url(generator, format: :rb), target: "_blank", class: "btn text-muted btn-sm"
+%ul.nav.nav-tabs
+  %li.active
+    %a{"aria-controls" => "home", "data-toggle" => "tab", :href => "#home", :role => "tab"} Your Generators
+  %li
+    %a{"aria-controls" => "profile", "data-toggle" => "tab", :href => "#profile", :role => "tab"} All Generators
+
+/ Tab panes
+.tab-content
+  #home.tab-pane.active{:role => "tabpanel"}
+    = render "table", generators: @public_generators, nil_notice: "You haven't created any Generators"
+
+  #profile.tab-pane{:role => "tabpanel"}
+    = render "table", generators: @all_generators, nil_notice: "There are currently no Public Generators"
 
   %tfoot
     %tr
       %td{ colspan: 3 }
-
-%br
-
-.text-center
-  = link_to 'New Generator', new_generator_path, class: "btn btn-primary"

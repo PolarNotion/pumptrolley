@@ -18,7 +18,11 @@
     
     %ul.list-inline
       %li
-        = link_to "View Source", generator_url(format: :rb), target: "_blank", class: "btn text-muted btn-sm"
+        = link_to generator_url(format: :rb), target: "_blank", class: "btn text-muted btn-sm" do
+          .fa.fa-code
+          Source
       - if current_user.can_edit_generator(@generator.id)
         %li
-          = link_to "Edit Generator", edit_generator_path, class: "btn text-muted btn-sm"
+          = link_to edit_generator_path, class: "btn text-muted btn-sm" do
+            .fa.fa-pencil
+            Edit

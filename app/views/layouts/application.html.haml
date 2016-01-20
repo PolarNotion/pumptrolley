@@ -19,7 +19,7 @@
 
     = csrf_meta_tags
     
-  %body
+  %body{ class: @body_class }
     = render 'layouts/alerts'
     = render 'layouts/navigation'
 

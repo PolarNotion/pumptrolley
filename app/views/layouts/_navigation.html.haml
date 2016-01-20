@@ -15,9 +15,11 @@
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
+          %li
+            = link_to "Generators", generators_path
           %li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              = current_user.email
+              .fa.fa-user
               %span.caret
             %ul.dropdown-menu
               %li
