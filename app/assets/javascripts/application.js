@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require jquery.turbolinks
+//= require jquery.autosize
 //= require jquery_ujs
 //= require codemirror
+//= require bootstrap
 //= require codemirror/modes/ruby
 //= require turbolinks
 //= require_tree .

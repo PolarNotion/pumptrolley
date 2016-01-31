@@ -1,5 +1,5 @@
 class GeneratorsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:new]
   before_action :set_generator, only: [:show, :edit, :update, :destroy]
 
   # GET /generators
@@ -7,7 +7,6 @@ class GeneratorsController < ApplicationController
   def index
     @personal_generators = current_user.generators.all
     @public_generators   = Generator.where.not(author_id: current_user.id).all
-    @fizzbuzz = "morgan"
   end
 
   # GET /generators/1
@@ -17,6 +16,10 @@ class GeneratorsController < ApplicationController
 
   # GET /generators/new
   def new
+    if params[:generator] and params[:generator][:email].present? and current_user.nil?
+      ensure_current_user
+    end
+
     @generator = current_user.generators.new
     
     if params[:dup]
@@ -24,6 +27,16 @@ class GeneratorsController < ApplicationController
       @generator         = original_generator
       
       @generator.name   += " Copy"
+    end
+
+    if params[:generator]
+      if params[:generator][:name].present?
+        @generator.name = params[:generator][:name]
+      end
+
+      if params[:generator][:snippet_ids].present?
+        @generator.snippet_ids = params[:generator][:snippet_ids]
+      end
     end
   end
 
@@ -72,6 +85,16 @@ class GeneratorsController < ApplicationController
   end
 
   private
+    def ensure_current_user
+      user = User.find_or_create_by(email: params[:generator][:email]) do |u|
+        temp_password           = SecureRandom.hex(6)
+        u.password              = temp_password
+        u.password_confirmation = temp_password
+      end
+
+      sign_in user
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_generator
       @generator = Generator.find(params[:id])

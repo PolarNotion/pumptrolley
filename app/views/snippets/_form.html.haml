@@ -6,6 +6,9 @@
     = f.input :name, input_html: { class: "form-control" }
     .privacy-option
       = f.input :is_private, label: "Private"
+
+  .form-group
+    = f.input :is_featured
   
   .form-group
     = f.input :description, input_html: { class: "form-control" }
@@ -31,7 +34,7 @@
     = f.input :tags, input_html: { class: "form-control" }
 
   .form-actions.text-center
-    = f.button :submit, class: "btn btn-primary"
+    = f.button :submit, class: "btn btn-primary btn-lg"
 
 :javascript
   $(".texteditor").each(function(){

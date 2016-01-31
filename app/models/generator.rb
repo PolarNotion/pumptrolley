@@ -2,6 +2,8 @@ class Generator < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: [:slugged, :finders, :history]
 
+  attr_accessor :email
+  
   belongs_to :author, class_name: "User"
 
   has_many :generator_snippets

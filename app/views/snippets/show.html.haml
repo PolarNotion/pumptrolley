@@ -27,6 +27,6 @@
   = @snippet.parent_id
 %p
   %b Author:
-  = @snippet.author.email
+  = @snippet.author.email if @snippet.author
 
 = link_to 'Edit', edit_snippet_path(@snippet)

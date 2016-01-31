@@ -80,6 +80,7 @@ class SnippetsController < ApplicationController
                                       :documentation_url,
                                       :is_private,
                                       :parent_id,
-                                      :author_id)
+                                      :author_id,
+                                      :is_featured)
     end
 end

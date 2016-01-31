@@ -7,8 +7,16 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  before_create :_email_temporary_password
+
   def can_edit_generator(generator_id)
     generator = Generator.find(generator_id)
     generator.author_id == id
+  end
+
+  private
+
+  def _email_temporary_password
+    # TODO Send user password
   end
 end

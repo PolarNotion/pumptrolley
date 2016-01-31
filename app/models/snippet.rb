@@ -9,4 +9,10 @@ class Snippet < ActiveRecord::Base
   
   has_many :generator_snippets
   has_many :generators, through: :generator_snippets
+
+  validates_presence_of :name,
+                        :description,
+                        :documentation_url,
+                        :install_content,
+                        :tags
 end

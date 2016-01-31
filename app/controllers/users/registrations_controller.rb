@@ -8,9 +8,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    generate_user_password
+    super
+  end
 
   # GET /resource/edit
   # def edit
@@ -57,4 +58,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def generate_user_password
+    temp_password = SecureRandom.hex(8)
+    params[:user][:password]              = temp_password
+    params[:user][:password_confirmation] = temp_password
+  end
 end

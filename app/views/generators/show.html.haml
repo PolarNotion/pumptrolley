@@ -11,8 +11,7 @@
     %p
       You can now use the link below to generate your Rail Application.
     %pre
-      rails new #{@generator.name.parameterize} -m
-      = generator_url(format: :rb)
+      rails new #{@generator.name.parameterize} -m #{generator_url(format: :rb)}
 
     %hr
     

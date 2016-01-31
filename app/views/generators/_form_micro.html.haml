@@ -1,0 +1,20 @@
+= simple_form_for @generator, url: new_generator_path, method: :get do |f|
+  = f.error_notification
+
+  .form-inputs
+    .form-group
+      = f.input :name, input_html: { class: "form-control texteditor" }
+      .privacy-option
+        = f.input :is_private, label: "Private"
+
+    - unless current_user
+      .form-group
+        = f.input :email, input_html: { class: "form-control" }
+
+    .form-group
+      %label
+        Customize your options
+      = f.association :snippets, as: :check_boxes, collection: Snippet.where(is_featured: true).order(:name).map { |s| ["<strong>#{s.name}</strong><div class='pull-right small'>#{s.tags.split(",").join(" • ")}</div><br>#{s.description}<br>".html_safe, s.id] },  label: false
+
+  .form-actions.text-center
+    = f.submit "Proceed", class: "btn btn-primary btn-block btn-lg"

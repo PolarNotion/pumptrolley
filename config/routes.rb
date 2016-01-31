@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  resources :generators
   
+  resources :generators
   resources :snippets
-
-  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', passwords: 'users/passwords' }
+  devise_for :users, controllers: { sessions:      'users/sessions',
+                                    registrations: 'users/registrations',
+                                    passwords:     'users/passwords' }
 
   root "pages#home"
   # The priority is based upon order of creation: first created -> highest priority.
