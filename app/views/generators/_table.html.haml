@@ -2,7 +2,6 @@
   %thead
     %tr
       %th Name
-      %th Command Line Script
       %th
   %tbody
     - if generators.present?
@@ -10,17 +9,15 @@
         %tr
           %td
             = link_to generator.name, generator
-          %td
-            .text-editor
-              rails new #{generator.name.parameterize} -m
-              = generator_url(generator, format: :rb)
           %td.text-right
             = link_to generator_url(generator, format: :rb), target: "_blank", class: "btn text-muted btn-sm" do
               .fa.fa-code
               Source
             = link_to new_generator_url(dup: generator.id), class: "btn text-muted btn-sm" do
               .fa.fa-copy
-              Copy
+              Clone
+            = link_to generator_url(generator), class: "btn text-muted btn-sm" do
+              Show
     - else
       %tr
         %td.text-center{ colspan: 3 }

@@ -20,6 +20,10 @@
         = link_to generator_url(format: :rb), target: "_blank", class: "btn text-muted btn-sm" do
           .fa.fa-code
           Source
+      %li
+        = link_to new_generator_url(dup: @generator.id), class: "btn text-muted btn-sm" do
+          .fa.fa-copy
+          Clone
       - if current_user.can_edit_generator(@generator.id)
         %li
           = link_to edit_generator_path, class: "btn text-muted btn-sm" do
