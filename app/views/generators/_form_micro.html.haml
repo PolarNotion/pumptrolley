@@ -2,14 +2,13 @@
   = f.error_notification
 
   .form-inputs
-    .form-group
-      = f.input :name, input_html: { class: "form-control texteditor" }
-      .privacy-option
-        = f.input :is_private, label: "Private"
-
     - unless current_user
       .form-group
-        = f.input :email, input_html: { class: "form-control" }
+        = f.input :email, input_html: { class: "form-control" }, label: "Your Email"
+    .form-group
+      = f.input :name, input_html: { class: "form-control texteditor" }, label: "Project Name"
+      .privacy-option
+        = f.input :is_private, label: "Private"
 
     .form-group
       %label

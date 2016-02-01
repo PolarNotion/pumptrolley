@@ -19,6 +19,7 @@ h1 {
   margin-top: 0px;
   text-align: center;
   font-size: 30px;
+  line-height: 42px;
   &.underline::after {
     content: " ";
     border-bottom: 2px solid #000;
