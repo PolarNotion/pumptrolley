@@ -1,5 +1,5 @@
 class GeneratorsController < ApplicationController
-  before_action :authenticate_user!, except: [:new]
+  before_action :authenticate_user!, except: [:new, :show]
   before_action :set_generator, only: [:show, :edit, :update, :destroy]
 
   # GET /generators
