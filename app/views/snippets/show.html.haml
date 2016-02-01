@@ -1,9 +1,6 @@
 %h1
   = @snippet.name
 
-
-= @snippet.install_content
-
 - if @snippet.followup_content.present?
   %p
     %b Followup content:
@@ -29,4 +26,5 @@
   %b Author:
   = @snippet.author.email if @snippet.author
 
-= link_to 'Edit', edit_snippet_path(@snippet)
+= link_to 'Edit', edit_snippet_path(@snippet), class: "btn btn-default btn-sm"
+= link_to "View Source", snippet_url(format: :rb), target: "_blank", class: "btn btn-default btn-sm"
