@@ -22,8 +22,9 @@
               .fa.fa-user
               %span.caret
             %ul.dropdown-menu
-              %li
-                = link_to "Snippets", snippets_path
+              - if current_user.is_admin
+                %li
+                  = link_to "Snippets", snippets_path
               %li
                 = link_to 'Edit profile', edit_user_registration_path
               %li.divider{:role => "separator"}
