@@ -3,18 +3,22 @@
 %br
 
 %table.table
+  %thead
+    %tr
+      %th{ colspan: 3 }
+        Name
   %tbody
     - @snippets.each do |snippet|
       %tr
         %td
-          %ul.list-inline
-            %li
-              %strong
-                = link_to snippet.name, snippet
-            - snippet.tags.split(",").each do |tag|
-              %li.pull-right
-                = link_to tag, url_for(tag: tag), class: "small"
-          = snippet.description
+          = link_to snippet.name, snippet
+        %td
+          - snippet.tags.split(",").each do |tag|
+            = link_to tag, url_for(tag: tag), class: "small"
+        %td.text-right
+          = link_to snippet_url(snippet, format: :rb), target: "_blank", class: "btn text-muted btn-sm" do
+            .fa.fa-code
+            source
 
 %br
 

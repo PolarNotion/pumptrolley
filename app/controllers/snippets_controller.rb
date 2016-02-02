@@ -1,5 +1,5 @@
 class SnippetsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
   before_action :set_snippet, only: [:show, :edit, :update, :destroy]
 
   # GET /snippets

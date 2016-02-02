@@ -1,5 +1,5 @@
 %nav.navbar
-  .container
+  .container-fluid
     / Brand and toggle get grouped for better mobile display
     .navbar-header
       %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
@@ -17,14 +17,13 @@
         - if user_signed_in?
           %li
             = link_to "Generators", generators_path
+          %li
+            = link_to "Snippets", snippets_path
           %li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               .fa.fa-user
               %span.caret
             %ul.dropdown-menu
-              - if current_user.is_admin
-                %li
-                  = link_to "Snippets", snippets_path
               %li
                 = link_to 'Edit profile', edit_user_registration_path
               %li.divider{:role => "separator"}
