@@ -14,17 +14,20 @@
 %hr
 
 - if @snippet.registration_url.present?
-  %p
+  %p.text-center
     %b Registration:
+    %br
     = @snippet.registration_url
 
 - if @snippet.documentation_url.present?
-  %p
+  %p.text-center
     %b Documentation:
+    %br
     = link_to @snippet.documentation_url
 
-%p
+%p.text-center
   %b Author:
+  %br
   = @snippet.author.email if @snippet.author
 
 .text-center
