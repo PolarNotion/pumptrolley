@@ -1,15 +1,30 @@
 %header.pad-section
-  %h1.text-center
-    Build a custom generator
-    %br
-    to expedite your next Rails project
-  %p.lead.text-center
-    Select your configurations.
-    %br
-    Run the command line script.
-    %br
-    Get to work.
-  
-.container-md
-  .form-wrapper
-    = render "generators/form_micro"
+  .row
+    .col-sm-6
+      %h1
+        Build a custom generator
+        %br
+        to expedite your next Rails project
+      %p.lead
+        %span.small
+          1.
+        Select your configurations.
+        %br
+        %span.small
+          2.
+        Run the command line script.
+        %br
+        %span.small
+          3.
+        Get to work.
+
+    .col-sm-6
+      .gif-wrapper
+        = image_tag "screenshare.gif"
+
+%hr
+
+%section.pad-section
+  .container-md
+    .form-wrapper
+      = render "generators/form_micro"
