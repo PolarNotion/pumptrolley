@@ -50,6 +50,10 @@ abbr[title], abbr[data-original-title] {
   margin-left: 3px;
 }
 
+#main_content {
+  min-height: 80vh;
+}
+
 .checkbox {
   margin-left: 0px;
 }
@@ -61,6 +65,12 @@ abbr[title], abbr[data-original-title] {
 .navbar-text {
   margin-top: 16px;
   margin-bottom: 16px;
+}
+
+.navbar-brand {
+  img {
+    max-width: 180px;
+  }
 }
 
 .dropdown-menu {

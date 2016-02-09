@@ -5,8 +5,8 @@ class GeneratorsController < ApplicationController
   # GET /generators
   # GET /generators.json
   def index
-    @personal_generators = current_user.generators.all
-    @public_generators   = Generator.where.not(author_id: current_user.id).all
+    @personal_generators = current_user.generators.order(:name).all
+    @public_generators   = Generator.order(:name).all
   end
 
   # GET /generators/1

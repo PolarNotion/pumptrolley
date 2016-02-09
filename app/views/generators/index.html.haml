@@ -1,22 +1,23 @@
 %h1 Generators
 
 / Nav tabs
+
 .pull-right
   = link_to 'New Generator', new_generator_path, class: "btn btn-primary btn-sm"
 
 %ul.nav.nav-tabs
   %li.active
-    %a{"aria-controls" => "home", "data-toggle" => "tab", :href => "#home", :role => "tab"} Your Generators
+    %a{"aria-controls" => "all", "data-toggle" => "tab", :href => "#all", :role => "tab"} View All
   %li
-    %a{"aria-controls" => "profile", "data-toggle" => "tab", :href => "#profile", :role => "tab"} All Generators
+    %a{"aria-controls" => "personal", "data-toggle" => "tab", :href => "#personal", :role => "tab"} My Generators
 
 / Tab panes
 .tab-content
-  #home.tab-pane.active{:role => "tabpanel"}
-    = render "table", generators: @personal_generators, nil_notice: "You haven't created any Generators"
+  #all.tab-pane.active{:role => "tabpanel"}
+    = render "table", generators: @public_generators, nil_notice: "There are currently no Public Generators"
 
-  #profile.tab-pane{:role => "tabpanel"}
-    = render "table", generators: @all_generators, nil_notice: "There are currently no Public Generators"
+  #personal.tab-pane{:role => "tabpanel"}
+    = render "table", generators: @personal_generators, nil_notice: "You haven't created any Generators"
 
   %tfoot
     %tr

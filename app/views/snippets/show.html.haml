@@ -6,25 +6,29 @@
     %b Followup content:
     = @snippet.followup_content
 
-%ul.list-inline.text-right
+%ul.list-inline.text-center
   - @snippet.tags.split(",").each do |tag|
     %li
       = link_to tag, url_for(tag: tag)
-%p
-  %b Registration url:
-  = @snippet.registration_url
-%p
-  %b Documentation url:
-  = @snippet.documentation_url
-%p
-  %b Is private:
-  = @snippet.is_private
-%p
-  %b Parent:
-  = @snippet.parent_id
+
+%hr
+
+- if @snippet.registration_url.present?
+  %p
+    %b Registration:
+    = @snippet.registration_url
+
+- if @snippet.documentation_url.present?
+  %p
+    %b Documentation:
+    = link_to @snippet.documentation_url
+
 %p
   %b Author:
   = @snippet.author.email if @snippet.author
 
-= link_to 'Edit', edit_snippet_path(@snippet), class: "btn btn-default btn-sm"
-= link_to "View Source", snippet_url(format: :rb), target: "_blank", class: "btn btn-default btn-sm"
+.text-center
+  = link_to 'Edit', edit_snippet_path(@snippet), class: "btn text-muted btn-sm"
+  = link_to snippet_url(format: :rb), target: "_blank", class: "btn text-muted btn-sm" do
+    .fa.fa-code
+    source

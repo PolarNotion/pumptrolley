@@ -7,7 +7,9 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to "RUN on RAILS", root_url, class: "navbar-brand"
+      = link_to root_url, class: "navbar-brand" do
+        = image_tag "logo.png"
+        
       .navbar-text
         %em
           Simplify App Setup

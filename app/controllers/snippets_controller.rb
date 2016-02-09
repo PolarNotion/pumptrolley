@@ -5,7 +5,8 @@ class SnippetsController < ApplicationController
   # GET /snippets
   # GET /snippets.json
   def index
-    @snippets = Snippet.order(:name).all
+    @personal_snippets = current_user.snippets.order(:name).all
+    @public_snippets   = Snippet.order(:name).all
   end
 
   # GET /snippets/1
