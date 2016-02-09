@@ -2,6 +2,8 @@
 
 html, body, input, button, select, textarea, optgroup, option, form, fieldset, table, i, b, p, a, li, tr, td, h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 label {
@@ -140,6 +142,11 @@ hr {
 
 .text-editor {
   font-family: monospace,monospace;
+}
+
+.text-lg {
+  font-size: 16px;
+  line-height: 26px;
 }
 
 .form-group .CodeMirror-sizer {
@@ -324,5 +331,11 @@ hr {
   }
   .checkbox:last-child {
     border-bottom: 0px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .btn-block-xs {
+    width: 100%;
   }
 }
