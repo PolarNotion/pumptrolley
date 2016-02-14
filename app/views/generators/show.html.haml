@@ -11,9 +11,7 @@
     %p
       You can use the link below to generate your Rails Application.
     %pre
-      rails new #{@generator.name.parameterize} -m #{generator_url(format: :rb)}
-
-    %hr
+      = commandline_script(@generator.id)
     
     %ul.list-inline
       %li
@@ -24,7 +22,7 @@
         = link_to new_generator_url(dup: @generator.id), class: "btn text-muted btn-sm" do
           .fa.fa-copy
           Clone
-      - if current_user.can_edit_generator(@generator.id)
+      - if current_user and current_user.can_edit_generator(@generator.id)
         %li
           = link_to edit_generator_path, class: "btn text-muted btn-sm" do
             .fa.fa-pencil

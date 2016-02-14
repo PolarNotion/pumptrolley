@@ -12,4 +12,12 @@ class Generator < ActiveRecord::Base
   validates_presence_of :name
 
   validates_uniqueness_of :name
+
+  before_save :ensure_privacy_token
+
+  def ensure_privacy_token
+    unless self.privacy_token.present?
+      self.privacy_token = SecureRandom.hex(15)
+    end
+  end
 end

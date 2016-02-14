@@ -12,6 +12,7 @@ class GeneratorsController < ApplicationController
   # GET /generators/1
   # GET /generators/1.json
   def show
+    verify_privacy_settings
   end
 
   # GET /generators/new
@@ -85,6 +86,16 @@ class GeneratorsController < ApplicationController
   end
 
   private
+    def verify_privacy_settings
+      unless current_user and current_user.can_edit_generator(@generator.id)
+        if @generator.is_private
+          unless params[:token] and params[:token] == @generator.privacy_token
+            redirect_to root_url, notice: "The generator you're trying to access is private."
+          end
+        end
+      end
+    end
+
     def ensure_current_user
       user = User.find_or_create_by(email: params[:generator][:email]) do |u|
         temp_password           = SecureRandom.hex(6)
