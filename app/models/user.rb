@@ -14,6 +14,11 @@ class User < ActiveRecord::Base
     generator.author_id == id
   end
 
+  def can_edit_snippet(snippet_id)
+    snippet = Snippet.find(snippet_id)
+    snippet.author_id == id
+  end
+
   private
 
   def _email_temporary_password

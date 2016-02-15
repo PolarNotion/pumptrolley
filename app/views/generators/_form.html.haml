@@ -7,6 +7,10 @@
       .privacy-option
         = f.input :is_private, label: "Private"
 
+    - if current_user.is_admin
+      .form-group 
+        = f.input :is_featured
+
     .form-group
       %label
         Select Snippets

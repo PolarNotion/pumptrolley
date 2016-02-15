@@ -5,8 +5,8 @@ class GeneratorsController < ApplicationController
   # GET /generators
   # GET /generators.json
   def index
-    @personal_generators = current_user.generators.order(:name).all
-    @public_generators   = Generator.order(:name).all
+    @personal_generators = current_user.generators.order(is_featured: :desc, name: :asc).all
+    @public_generators   = Generator.where.not(author_id: current_user.id).where(is_private: false).order(is_featured: :desc, name: :asc).all
   end
 
   # GET /generators/1
@@ -21,23 +21,13 @@ class GeneratorsController < ApplicationController
       ensure_current_user
     end
 
-    @generator = current_user.generators.new
-    
-    if params[:dup]
-      original_generator = Generator.find(params[:dup])
-      @generator         = original_generator
-      
-      @generator.name   += " Copy"
-    end
+    if current_user.nil? # This should only trigger on a direct hit to generators/new
+      redirect_to new_user_registration_path, notice: "Please signup before continuing."
+    else
+      @generator = current_user.generators.new
 
-    if params[:generator]
-      if params[:generator][:name].present?
-        @generator.name = params[:generator][:name]
-      end
-
-      if params[:generator][:snippet_ids].present?
-        @generator.snippet_ids = params[:generator][:snippet_ids]
-      end
+      build_from_dup
+      build_from_micro_form
     end
   end
 
@@ -86,6 +76,29 @@ class GeneratorsController < ApplicationController
   end
 
   private
+    def build_from_dup
+      if params[:dup]
+        original_generator     = Generator.find(params[:dup])
+        @generator             = original_generator.dup
+        @generator.snippet_ids = original_generator.snippet_ids
+        @generator.author      = current_user
+        
+        @generator.name   += " Copy"
+      end
+    end
+
+    def build_from_micro_form
+      if params[:generator]
+        if params[:generator][:name].present?
+          @generator.name = params[:generator][:name]
+        end
+
+        if params[:generator][:snippet_ids].present?
+          @generator.snippet_ids = params[:generator][:snippet_ids]
+        end
+      end
+    end
+
     def verify_privacy_settings
       unless current_user and current_user.can_edit_generator(@generator.id)
         if @generator.is_private
@@ -116,6 +129,7 @@ class GeneratorsController < ApplicationController
       params.require(:generator).permit(:name,
                                         :is_private,
                                         :author_id,
+                                        :is_featured,
                                         snippet_ids: [])
     end
 end

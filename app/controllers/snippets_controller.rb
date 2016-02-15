@@ -5,8 +5,8 @@ class SnippetsController < ApplicationController
   # GET /snippets
   # GET /snippets.json
   def index
-    @personal_snippets = current_user.snippets.order(:name).all
-    @public_snippets   = Snippet.order(:name).all
+    @personal_snippets = current_user.snippets.order(is_featured: :desc, name: :asc).all
+    @public_snippets   = Snippet.where.not(author_id: current_user.id).where(is_private: false).order(is_featured: :desc, name: :asc).all
   end
 
   # GET /snippets/1
@@ -65,6 +65,16 @@ class SnippetsController < ApplicationController
   end
 
   private
+    def verify_privacy_settings
+      unless current_user and current_user.can_edit_generator(@snippet.id)
+        if @snippet.is_private
+          unless params[:token] and params[:token] == @snippet.privacy_token
+            redirect_to root_url, notice: "The generator you're trying to access is private."
+          end
+        end
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_snippet
       @snippet = Snippet.find(params[:id])

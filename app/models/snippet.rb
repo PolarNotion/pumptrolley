@@ -15,4 +15,12 @@ class Snippet < ActiveRecord::Base
                         :documentation_url,
                         :install_content,
                         :tags
+
+  before_save :ensure_privacy_token
+
+  def ensure_privacy_token
+    unless self.privacy_token.present?
+      self.privacy_token = SecureRandom.hex(15)
+    end
+  end
 end

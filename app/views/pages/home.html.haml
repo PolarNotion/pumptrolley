@@ -1,42 +1,85 @@
 %header.pad-section
-  .row
-    .col-sm-6
-      %h1.text-center-xs
-        Build a generator
-        %br
-        to automate Rails setup
+  .container
+    .row
+      .col-sm-6
+        %h1.text-center-xs
+          Build a Rails App Template
+          %br
+          to automate Rails setup
 
+        %br
+
+        %p.lead.text-center-xs
+          %span.small
+            1.
+          Select your configurations.
+          %br
+          %span.small
+            2.
+          Run the command line script.
+          %br
+          %span.small
+            3.
+          Get to work.
+
+      .col-sm-6
+        .gif-wrapper
+          = image_tag "screenshare.gif"
+    
+    %br
+    %br
+    %br
+
+    .row
+      .col-sm-8
+        %p.text-lg
+          Save time and avoid headaches by getting your Rails app of the ground by using our generators, or creating your own.
+      .col-sm-4.text-right
+        = link_to "Get Started", "#get_started", class: "btn btn-primary btn-lg btn-block-xs"
+
+%section#test_it.background-gray-light.pad-section
+  .container
+    %h2.text-center
+      Unfamiliar with Rails App Templates?
+    %br
+    %p.lead.text-center
+      Application templates are simple Ruby files for adding gems, initializers, and more to your freshly created or existing Rails project.
       %br
+      = link_to "Read more about Rails App Templates", "http://guides.rubyonrails.org/rails_application_templates.html", target: "_blank"
 
-      %p.lead.text-center-xs
-        %span.small
-          1.
-        Select your configurations.
-        %br
-        %span.small
-          2.
-        Run the command line script.
-        %br
-        %span.small
-          3.
-        Get to work.
+    %hr.short
 
-    .col-sm-6
-      .gif-wrapper
-        = image_tag "screenshare.gif"
-  
-  %br
-
-  .row
-    .col-sm-8
-      %p.text-lg
-        Save time and avoid headaches by getting your Rails app of the ground by using our generators, or creating your own.
-    .col-sm-4.text-right
-      = link_to "Get Started", "#get_started", class: "btn btn-primary btn-lg btn-block-xs"
-
-%hr
+    .container-sm
+      %h3.text-center
+        Test it out
+      %ol
+        %li
+          Open a terminal window
+        %li
+          Make sure git and rails are installed
+        %li
+          Copy/paste the following script:
+      
+    .container-lg
+      %pre.text-center
+        = commandline_script(@demo_generator.id)
 
 %section#get_started.pad-section
   .container-md
+    %h2.text-center
+      Get Started
+    %p.text-center
+      Use our library of code snippets to build a generator.
     .form-wrapper
       = render "generators/form_micro"
+
+%hr.short
+
+%section#test_it
+  .container
+    %h2.text-center
+      Already have a project?
+    %p.lead.text-center
+      If you're working on an existing project, app templates can still we useful. Browse snippets of code to install individual pieces of functionality.
+    %p.text-center
+      = link_to "Browse Snippets", snippets_path, class: "btn btn-primary btn-lg"

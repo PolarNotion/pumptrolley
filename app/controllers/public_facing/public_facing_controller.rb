@@ -1,3 +1,0 @@
-class PublicFacingController < ApplicationController
-
-end

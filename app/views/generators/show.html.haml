@@ -1,12 +1,6 @@
-%h1.text-center
-  = @generator.name
+= render "shared/page_title", title: @generator.name, author: @generator.author.email
 
-.container-md
-  %p.small.text-muted.text-center
-    %em
-      By
-      = @generator.author.email
-
+.container-lg
   .text-center
     %p
       You can use the link below to generate your Rails Application.

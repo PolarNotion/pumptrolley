@@ -1,37 +1,37 @@
-%h1.text-center
-  = @snippet.name
+= render "shared/page_title", title: @snippet.name, author: @snippet.author.email
 
-- if @snippet.followup_content.present?
-  %p
-    %b Followup content:
-    = @snippet.followup_content
+.container-lg
+  - if @snippet.followup_content.present?
+    %p
+      %b Followup content:
+      = @snippet.followup_content
 
-%ul.list-inline.text-center
-  - @snippet.tags.split(",").each do |tag|
-    %li
-      = link_to tag, url_for(tag: tag)
+  %pre.text-center
+    rake rails:template LOCATION=
+    = snippet_url(@snippet)
 
-%hr
+  %ul.list-inline.text-center
+    - @snippet.tags.split(",").each do |tag|
+      %li
+        = link_to tag, url_for(tag: tag)
 
-- if @snippet.registration_url.present?
-  %p.text-center
-    %b Registration:
-    %br
-    = @snippet.registration_url
+  %hr
 
-- if @snippet.documentation_url.present?
-  %p.text-center
-    %b Documentation:
-    %br
-    = link_to @snippet.documentation_url
+  - if @snippet.registration_url.present?
+    %p.text-center
+      %b Registration:
+      %br
+      = @snippet.registration_url
 
-%p.text-center
-  %b Author:
-  %br
-  = @snippet.author.email if @snippet.author
+  - if @snippet.documentation_url.present?
+    %p.text-center
+      %b Documentation:
+      %br
+      = link_to @snippet.documentation_url
 
-.text-center
-  = link_to 'Edit', edit_snippet_path(@snippet), class: "btn text-muted btn-sm"
-  = link_to snippet_url(format: :rb), target: "_blank", class: "btn text-muted btn-sm" do
-    .fa.fa-code
-    source
+  .text-center
+    - if current_user and current_user.can_edit_snippet(@snippet.id)
+      = link_to 'Edit', edit_snippet_path(@snippet), class: "btn text-muted btn-sm"
+    = link_to snippet_url(format: :rb), target: "_blank", class: "btn text-muted btn-sm" do
+      .fa.fa-code
+      source

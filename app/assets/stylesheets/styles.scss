@@ -38,11 +38,11 @@ pre {
   border-radius: 0px !important;
 }
 
-body.background-gray-light {
+.background-gray-light {
   background-color: whitesmoke;
 }
 
-body.background-primary-light {
+.background-primary-light {
   background-color: rgb(224, 241, 255);
 }
 
@@ -60,6 +60,10 @@ hr {
   max-width: 80%;
 }
 
+hr.short {
+  max-width: 100px;
+}
+
 .alert {
   text-align: center;
 }
@@ -68,6 +72,7 @@ hr {
   max-width: 500px;
   padding: 20px;
   background-color: white;
+  border: 1px solid;
   margin-left: auto;
   margin-right: auto;
   border-top: 10px solid;
@@ -142,6 +147,10 @@ hr {
   -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
   -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.text-yellow {
+  color: #FFD000;
 }
 
 .text-editor {

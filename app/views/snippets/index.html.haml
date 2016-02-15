@@ -9,17 +9,17 @@
 
 %ul.nav.nav-tabs
   %li.active
-    %a{"aria-controls" => "all", "data-toggle" => "tab", :href => "#all", :role => "tab"} View All
-  %li
     %a{"aria-controls" => "personal", "data-toggle" => "tab", :href => "#personal", :role => "tab"} My Snippets
+  %li
+    %a{"aria-controls" => "all", "data-toggle" => "tab", :href => "#all", :role => "tab"} View All
 
 / Tab panes
 .tab-content
-  #all.tab-pane.active{:role => "tabpanel"}
-    = render "table", snippets: @public_snippets, nil_notice: "There are currently no Public Snippets"
-
-  #personal.tab-pane{:role => "tabpanel"}
+  #personal.tab-pane.active{:role => "tabpanel"}
     = render "table", snippets: @personal_snippets, nil_notice: "You haven't created any Snippets"
+
+  #all.tab-pane{:role => "tabpanel"}
+    = render "table", snippets: @public_snippets, nil_notice: "There are currently no Public Snippets"
 
   %tfoot
     %tr

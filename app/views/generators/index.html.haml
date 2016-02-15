@@ -7,17 +7,16 @@
 
 %ul.nav.nav-tabs
   %li.active
-    %a{"aria-controls" => "all", "data-toggle" => "tab", :href => "#all", :role => "tab"} View All
-  %li
     %a{"aria-controls" => "personal", "data-toggle" => "tab", :href => "#personal", :role => "tab"} My Generators
+  %li
+    %a{"aria-controls" => "all", "data-toggle" => "tab", :href => "#all", :role => "tab"} View All
 
 / Tab panes
 .tab-content
-  #all.tab-pane.active{:role => "tabpanel"}
-    = render "table", generators: @public_generators, nil_notice: "There are currently no Public Generators"
-
-  #personal.tab-pane{:role => "tabpanel"}
+  #personal.tab-pane.active{:role => "tabpanel"}
     = render "table", generators: @personal_generators, nil_notice: "You haven't created any Generators"
+  #all.tab-pane{:role => "tabpanel"}
+    = render "table", generators: @public_generators, nil_notice: "There are currently no Public Generators"
 
   %tfoot
     %tr
