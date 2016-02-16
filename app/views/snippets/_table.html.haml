@@ -13,9 +13,8 @@
               %sup.text-yellow
                 .fa.fa-star
 
-          %td
-            - snippet.tags.split(",").each do |tag|
-              = link_to tag, url_for(tag: tag), class: "small"
+          %td.small.text-muted
+            = snippet.tags.split(",").map {|t| t }.join(" • ")
           %td.text-right
             -# = link_to snippet_url(snippet, format: :rb), target: "_blank", class: "btn text-muted btn-sm" do
             -#   .fa.fa-code

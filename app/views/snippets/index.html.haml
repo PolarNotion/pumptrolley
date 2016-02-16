@@ -19,10 +19,10 @@
   / Tab panes
   .tab-content.content-wrapper
     #personal.tab-pane.active{:role => "tabpanel"}
-      = render "table", snippets: @personal_snippets, nil_notice: "You haven't created any Snippets"
+      = render "table", snippets: @personal_snippets, nil_notice: "You haven't created any Snippets", anchor: "personal"
 
     #all.tab-pane{:role => "tabpanel"}
-      = render "table", snippets: @public_snippets, nil_notice: "There are currently no Public Snippets"
+      = render "table", snippets: @public_snippets, nil_notice: "There are currently no Public Snippets", anchor: "all"
 
     %tfoot
       %tr

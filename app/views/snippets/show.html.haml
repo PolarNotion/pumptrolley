@@ -34,10 +34,18 @@
 
   .content-footer-wrapper
     %ul.list-inline
+      %li
+        = link_to new_snippet_path(dup: @snippet.id) do
+          .fa.fa-copy
+          Clone
       - if @snippet.registration_url.present?
+        %li.text-muted
+          •
         %li= link_to "Registration", @snippet.registration_url
 
       - if @snippet.documentation_url.present?
+        %li.text-muted
+          •
         %li= link_to "Documentation", @snippet.documentation_url
 
       - @snippet.tags.split(",").each do |tag|

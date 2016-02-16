@@ -9,6 +9,8 @@
         %tr
           %td
             = link_to generator.name, generator
+            .small.text-muted.hidden-xs
+              = generator.snippets.order(name: :asc).map {|s| s.name }.join(" • ")
           %td.text-right
             = link_to new_generator_url(dup: generator.id), class: "btn text-muted btn-sm" do
               .fa.fa-copy
