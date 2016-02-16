@@ -1,17 +1,1 @@
-= "# Generator: #{@generator.name}"
-= "# Author: #{@generator.author.email}"
-= "# Created via Polar Notion's Generator Tool"
-\
-= "####################################################"
-
-git :init
-git add: "."
-git commit: "-a -m 'Initial Commit'"
-
-= "####################################################"
-
-= render @generator.snippets
-
-\
-= "# Done."
-= "# Go Boldy Forward."
+= render @generator

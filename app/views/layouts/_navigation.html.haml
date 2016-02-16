@@ -1,5 +1,5 @@
 %nav.navbar
-  .container-fluid
+  .container
     / Brand and toggle get grouped for better mobile display
     .navbar-header
       %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
@@ -12,22 +12,31 @@
         
       .navbar-text
         %em
-          Simplify App Setup
+          Move faster on Rails
     / Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
-          %li
-            = link_to "Generators", generators_path
-          %li
-            = link_to "Snippets", snippets_path
           %li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              .fa.fa-user
+              = current_user.email
             %ul.dropdown-menu
               %li
-                = link_to 'Edit profile', edit_user_registration_path
+                = link_to generators_path do
+                  Templates
+                  %br
+                  %em.small
+                    for new projects
+              %li
+                = link_to snippets_path do
+                  Snippets
+                  %br
+                  %em.small
+                    for existing projects
               %li.divider{:role => "separator"}
+              %li
+                = link_to edit_user_registration_path do
+                  Settings
               %li
                 = link_to "Logout", destroy_user_session_path, method: :delete
         - else

@@ -1,37 +1,47 @@
-= render "shared/page_title", title: @snippet.name, author: @snippet.author.email
+.container
+  = render "shared/page_title", title: "#{@snippet.name} Snippet", author: @snippet.author.email
 
-.container-lg
-  - if @snippet.followup_content.present?
-    %p
-      %b Followup content:
-      = @snippet.followup_content
+  - if current_user and current_user.can_edit_snippet(@snippet.id)
+    .pull-right
+      = link_to 'Edit Snippet', edit_snippet_path(@snippet), class: "btn btn-primary btn-sm"
 
-  %pre.text-center
-    rake rails:template LOCATION=
-    = snippet_url(@snippet)
+  %ul.nav.nav-tabs
+    %li.active
+      %a{"aria-controls" => "install", "data-toggle" => "tab", :href => "#install", :role => "tab"}
+        .fa.fa-terminal
+        Install
+    %li
+      %a{"aria-controls" => "source", "data-toggle" => "tab", :href => "#source", :role => "tab"}
+        .fa.fa-code
+        Source
 
-  %ul.list-inline.text-center
-    - @snippet.tags.split(",").each do |tag|
-      %li
-        = link_to tag, url_for(tag: tag)
+  / Tab panes
+  .tab-content.content-wrapper
+    #install.tab-pane.fade.in.active{:role => "tabpanel"}
+      %p
+        To install #{@snippet.name} within an existing rails project, run the following script:
+      %pre
+        rake rails:template LOCATION=
+        = snippet_url(@snippet, format: :rb)
 
-  %hr
+      - if @snippet.followup_content.present?
+        %p
+          %b Followup content:
+          = @snippet.followup_content
 
-  - if @snippet.registration_url.present?
-    %p.text-center
-      %b Registration:
-      %br
-      = @snippet.registration_url
+    #source.tab-pane.fade.in{:role => "tabpanel"}
+      %pre= render @snippet
 
-  - if @snippet.documentation_url.present?
-    %p.text-center
-      %b Documentation:
-      %br
-      = link_to @snippet.documentation_url
+  .content-footer-wrapper
+    %ul.list-inline
+      - if @snippet.registration_url.present?
+        %li= link_to "Registration", @snippet.registration_url
 
-  .text-center
-    - if current_user and current_user.can_edit_snippet(@snippet.id)
-      = link_to 'Edit', edit_snippet_path(@snippet), class: "btn text-muted btn-sm"
-    = link_to snippet_url(format: :rb), target: "_blank", class: "btn text-muted btn-sm" do
-      .fa.fa-code
-      source
+      - if @snippet.documentation_url.present?
+        %li= link_to "Documentation", @snippet.documentation_url
+
+      - @snippet.tags.split(",").each do |tag|
+        %li.pull-right
+          = link_to tag, url_for(tag: tag)
+      %li.pull-right
+        .fa.fa-tags.text-muted

@@ -1,23 +1,34 @@
-= render "shared/page_title", title: @generator.name, author: @generator.author.email
+.container
+  = render "shared/page_title", title: "#{@generator.name} Template", author: @generator.author.email
 
-.container-lg
-  .text-center
-    %p
-      You can use the link below to generate your Rails Application.
-    %pre
-      = commandline_script(@generator.id)
-    
+  - if current_user and current_user.can_edit_snippet(@generator.id)
+    .pull-right
+      = link_to 'Edit Template', edit_generator_path(@generator), class: "btn btn-primary btn-sm"
+
+  %ul.nav.nav-tabs
+    %li.active
+      %a{"aria-controls" => "install", "data-toggle" => "tab", :href => "#install", :role => "tab"}
+        .fa.fa-terminal
+        Install
+    %li
+      %a{"aria-controls" => "source", "data-toggle" => "tab", :href => "#source", :role => "tab"}
+        .fa.fa-code
+        Source
+
+  / Tab panes
+  .tab-content.content-wrapper
+    #install.tab-pane.fade.in.active{:role => "tabpanel"}
+      %p
+        To install #{@generator.name} for a new Rails Application, make sure Git and Rails are installed, then run the following script from the command line:
+      %pre
+        = commandline_script(@generator.id)
+
+    #source.tab-pane.fade.in{:role => "tabpanel"}
+      %pre= render @generator
+
+  .content-footer-wrapper
     %ul.list-inline
       %li
-        = link_to generator_url(format: :rb), target: "_blank", class: "btn text-muted btn-sm" do
-          .fa.fa-code
-          Source
-      %li
-        = link_to new_generator_url(dup: @generator.id), class: "btn text-muted btn-sm" do
+        = link_to new_generator_url(dup: @generator.id) do
           .fa.fa-copy
           Clone
-      - if current_user and current_user.can_edit_generator(@generator.id)
-        %li
-          = link_to edit_generator_path, class: "btn text-muted btn-sm" do
-            .fa.fa-pencil
-            Edit

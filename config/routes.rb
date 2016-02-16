@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
   
-  resources :generators
+  resources :generators,
+            path: "templates"
   resources :snippets
   devise_for :users, controllers: { sessions:      'users/sessions',
                                     registrations: 'users/registrations',
                                     passwords:     'users/passwords' }
 
   root "pages#home"
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

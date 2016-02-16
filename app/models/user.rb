@@ -19,6 +19,13 @@ class User < ActiveRecord::Base
     snippet.author_id == id
   end
 
+  def accessable_snippets
+    Snippet.order(is_featured: :desc, name: :asc).select do |s|
+      s.author_id = id or
+      s.is_private == false
+    end
+  end
+
   private
 
   def _email_temporary_password

@@ -1,0 +1,17 @@
+= "# Generator: #{generator.name}"
+= "# Author: #{generator.author.email}"
+= "# Created via pumptrolley.io, Polar Notion's App Template Tool"
+\
+= "####################################################"
+
+git :init
+git add: "."
+git commit: "-a -m 'Initial Commit'"
+
+= "####################################################"
+
+= render generator.snippets
+
+\
+= "# Done."
+= "# Go Boldy Forward."

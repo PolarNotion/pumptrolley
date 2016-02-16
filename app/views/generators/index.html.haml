@@ -1,23 +1,28 @@
-%h1 Generators
+%header
+  .container
+    %h1
+      Templates
+    %p.text-muted
+      App Templates are made up of Snippets and used on new Rails projects.
 
-/ Nav tabs
+.container
+  / Nav tabs
+  .pull-right
+    = link_to 'New Template', new_generator_path, class: "btn btn-primary btn-sm"
 
-.pull-right
-  = link_to 'New Generator', new_generator_path, class: "btn btn-primary btn-sm"
+  %ul.nav.nav-tabs
+    %li.active
+      %a{"aria-controls" => "personal", "data-toggle" => "tab", :href => "#personal", :role => "tab"} My Templates
+    %li
+      %a{"aria-controls" => "all", "data-toggle" => "tab", :href => "#all", :role => "tab"} View All
 
-%ul.nav.nav-tabs
-  %li.active
-    %a{"aria-controls" => "personal", "data-toggle" => "tab", :href => "#personal", :role => "tab"} My Generators
-  %li
-    %a{"aria-controls" => "all", "data-toggle" => "tab", :href => "#all", :role => "tab"} View All
+  / Tab panes
+  .tab-content.content-wrapper
+    #personal.tab-pane.active{:role => "tabpanel"}
+      = render "table", generators: @personal_generators, nil_notice: "You haven't created any Generators"
+    #all.tab-pane{:role => "tabpanel"}
+      = render "table", generators: @public_generators, nil_notice: "There are currently no Public Generators"
 
-/ Tab panes
-.tab-content
-  #personal.tab-pane.active{:role => "tabpanel"}
-    = render "table", generators: @personal_generators, nil_notice: "You haven't created any Generators"
-  #all.tab-pane{:role => "tabpanel"}
-    = render "table", generators: @public_generators, nil_notice: "There are currently no Public Generators"
-
-  %tfoot
-    %tr
-      %td{ colspan: 3 }
+    %tfoot
+      %tr
+        %td{ colspan: 3 }

@@ -1,11 +1,11 @@
 %header.pad-section
   .container
     .row
-      .col-sm-6
+      .col-sm-7.col-md-6
         %h1.text-center-xs
           Build a Rails App Template
-          %br
-          to automate Rails setup
+          %br.hidden-xs
+          and get work done faster.
 
         %br
 
@@ -22,7 +22,8 @@
             3.
           Get to work.
 
-      .col-sm-6
+      .col-sm-5.col-md-6
+        %br
         .gif-wrapper
           = image_tag "screenshare.gif"
     
@@ -30,22 +31,23 @@
     %br
     %br
 
-    .row
-      .col-sm-8
-        %p.text-lg
-          Save time and avoid headaches by getting your Rails app of the ground by using our generators, or creating your own.
-      .col-sm-4.text-right
-        = link_to "Get Started", "#get_started", class: "btn btn-primary btn-lg btn-block-xs"
+    .container-xl
+      .row
+        .col-sm-8
+          %p.text-lg
+            Save time and avoid headaches by getting your Rails app off the ground by using our generators, or creating your own.
+        .col-sm-4.text-right
+          = link_to "Get Started", "#get_started", class: "btn btn-primary btn-lg btn-block-xs"
 
 %section#test_it.background-gray-light.pad-section
-  .container
+  .container-lg
     %h2.text-center
       Unfamiliar with Rails App Templates?
     %br
     %p.lead.text-center
-      Application templates are simple Ruby files for adding gems, initializers, and more to your freshly created or existing Rails project.
+      Application templates are simple Ruby files for adding gems, initializers, and more to your freshly created or existing Rails project. Read more about
       %br
-      = link_to "Read more about Rails App Templates", "http://guides.rubyonrails.org/rails_application_templates.html", target: "_blank"
+      = link_to "Rails App Templates", "http://guides.rubyonrails.org/rails_application_templates.html", target: "_blank"
 
     %hr.short
 
@@ -80,6 +82,8 @@
     %h2.text-center
       Already have a project?
     %p.lead.text-center
-      If you're working on an existing project, app templates can still we useful. Browse snippets of code to install individual pieces of functionality.
+      If you're working on an existing project, app templates can still we useful.
+      %br
+      Browse snippets of code to install individual pieces of functionality.
     %p.text-center
       = link_to "Browse Snippets", snippets_path, class: "btn btn-primary btn-lg"

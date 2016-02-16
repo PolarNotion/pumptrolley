@@ -29,6 +29,8 @@ class GeneratorsController < ApplicationController
       build_from_dup
       build_from_micro_form
     end
+
+    @accessable_snippets = current_user.accessable_snippets
   end
 
   # GET /generators/1/edit

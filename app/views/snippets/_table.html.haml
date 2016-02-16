@@ -17,9 +17,12 @@
             - snippet.tags.split(",").each do |tag|
               = link_to tag, url_for(tag: tag), class: "small"
           %td.text-right
-            = link_to snippet_url(snippet, format: :rb), target: "_blank", class: "btn text-muted btn-sm" do
-              .fa.fa-code
-              source
+            -# = link_to snippet_url(snippet, format: :rb), target: "_blank", class: "btn text-muted btn-sm" do
+            -#   .fa.fa-code
+            -#   source
+            = link_to new_snippet_path(dup: snippet.id), class: "btn text-muted btn-sm" do
+              .fa.fa-copy
+              clone
             = link_to snippet_url(snippet), class: "btn text-muted btn-sm" do
               show
     - else

@@ -13,7 +13,7 @@
     .form-group
       %label
         Customize your options
-      = f.association :snippets, as: :check_boxes, collection: Snippet.where(is_featured: true).order(:name).map { |s| ["<strong>#{s.name}</strong><div class='pull-right small'>#{s.tags.split(",").join(" • ")}</div><br>#{s.description}<br>".html_safe, s.id] },  label: false
+      = f.association :snippets, as: :check_boxes, collection: Snippet.where(is_featured: true, is_private: false).order(:name).map { |s| ["<strong>#{s.name}</strong><div class='pull-right small'>#{s.tags.split(",").join(" • ")}</div><br>#{s.description}<br>".html_safe, s.id] },  label: false
 
   .form-actions.text-center
     = f.submit "Proceed", class: "btn btn-primary btn-block btn-lg"

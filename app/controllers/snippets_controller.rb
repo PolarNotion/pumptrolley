@@ -17,7 +17,7 @@ class SnippetsController < ApplicationController
   # GET /snippets/new
   def new
     @snippet = current_user.snippets.new
-
+    build_from_dup
   end
 
   # GET /snippets/1/edit
@@ -65,6 +65,17 @@ class SnippetsController < ApplicationController
   end
 
   private
+
+    def build_from_dup
+      if params[:dup]
+        original_snippet      = Snippet.find(params[:dup])
+        @snippet              = original_snippet.dup
+        @snippet.author       = current_user
+        
+        @snippet.name += " Copy"
+      end
+    end
+
     def verify_privacy_settings
       unless current_user and current_user.can_edit_generator(@snippet.id)
         if @snippet.is_private
