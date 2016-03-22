@@ -2,5 +2,17 @@
 \
 = snippet.install_content.html_safe
 \
+
+if snippet.followup_content.present?
+  unless snippet.followup_content == ""
+    puts "******************************************************************************"
+    puts ""
+    puts "Additional Instructions:"
+    puts "#{snippet.followup_content}"
+    puts ""
+    puts "******************************************************************************"
+  end
+end 
+
 = "# End #{snippet.name}"
 = "####################################################"
