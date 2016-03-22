@@ -26,6 +26,13 @@ class User < ActiveRecord::Base
     end
   end
 
+  def photo_url(size)
+    photo_size   = size ? size : "500"
+    gravatar_id  = Digest::MD5.hexdigest(email.downcase)
+    
+    "http://www.gravatar.com/avatar/#{gravatar_id}?s=#{photo_size}px"
+  end
+
   private
 
   def _email_temporary_password

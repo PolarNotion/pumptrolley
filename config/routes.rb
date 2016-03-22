@@ -2,10 +2,15 @@ Rails.application.routes.draw do
   
   resources :generators,
             path: "templates"
+  
   resources :snippets
+  
   devise_for :users, controllers: { sessions:      'users/sessions',
                                     registrations: 'users/registrations',
                                     passwords:     'users/passwords' }
+  
+  get 'resources' => 'pages#resources'
+  get ':id'       => 'pages#profile', as: :user_profile
 
   root "pages#home"
   

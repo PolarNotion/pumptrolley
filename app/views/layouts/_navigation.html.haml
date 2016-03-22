@@ -19,7 +19,16 @@
         - if user_signed_in?
           %li.dropdown
             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              = current_user.email
+              .fa.fa-plus
+              .fa.fa-caret-down
+            %ul.dropdown-menu
+              %li
+                = link_to 'New Template', new_generator_path
+              %li
+                = link_to 'New Snippet', new_snippet_path
+          %li.navbar-avatar.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              = image_tag current_user.photo_url(30)
             %ul.dropdown-menu
               %li
                 = link_to generators_path do

@@ -1,0 +1,21 @@
+%header
+  .container
+    %h1
+      Resources
+    %p.text-muted
+      App Templates are made up of Snippets and used on new Rails projects.
+
+.container
+
+  %ul.nav.nav-tabs
+    %li.active
+      %a{"aria-controls" => "templates", "data-toggle" => "tab", :href => "#templates", :role => "tab"} Templates
+    %li
+      %a{"aria-controls" => "snippets", "data-toggle" => "tab", :href => "#snippets", :role => "tab"} Snippets
+
+  / Tab panes
+  .tab-content.content-wrapper
+    #templates.tab-pane.active{:role => "tabpanel"}
+      = render "generators/table", generators: @public_generators, nil_notice: "There are currently no Public Snippets"
+    #snippets.tab-pane{:role => "tabpanel"}
+      = render "snippets/table", snippets: @public_snippets, nil_notice: "There are currently no Public Templates"
