@@ -35,6 +35,7 @@ class GeneratorsController < ApplicationController
 
   # GET /generators/1/edit
   def edit
+    @accessable_snippets = current_user.accessable_snippets
   end
 
   # POST /generators
