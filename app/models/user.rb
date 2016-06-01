@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
   def accessable_snippets
     Snippet.order(is_featured: :desc, name: :asc).select do |s|
-      s.author_id = id or
+      s.author_id == id or
       s.is_private == false
     end
   end

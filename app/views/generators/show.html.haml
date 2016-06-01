@@ -1,7 +1,7 @@
 .container
   = render "shared/page_title", title: "#{@generator.name} Template", author: @generator.author.email
 
-  - if current_user and current_user.can_edit_snippet(@generator.id)
+  - if current_user and current_user.can_edit_generator(@generator.id)
     .pull-right
       = link_to 'Edit Template', edit_generator_path(@generator), class: "btn btn-primary btn-sm"
 
