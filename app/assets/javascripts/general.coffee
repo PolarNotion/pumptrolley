@@ -2,14 +2,14 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-jQuery ->
+$ ->
+
   $('#sortable').sortable
     axis: 'y'
     handle: '.handle'
     update: ->
       $.post($(this).data('update-url'), $(this).sortable('serialize'))
 
-$ ->
   $('textarea').autosize();
 
   $('a[href*="#"]:not([href="#"]):not([data-toggle="tab"])').click ->
@@ -22,7 +22,6 @@ $ ->
     return
   return
 
-$ ->
   hash = window.location.hash
   hash and $('ul.nav a[href="' + hash + '"]').tab('show')
   $('.nav-tabs a').click (e) ->
@@ -32,4 +31,3 @@ $ ->
     $('html,body').scrollTop scrollmem
     return
   return
-
