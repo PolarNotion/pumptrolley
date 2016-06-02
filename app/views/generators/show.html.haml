@@ -34,15 +34,15 @@
       %h3
         Snippets
 
-      %ul#sortable.list-unstyled{ "data-update-url" => "#{sort_generator_snippets_url}" }
-        - @generator_snippets.each do |generator_snippet|
-          = content_tag_for :li, generator_snippet do
+      %ul#sortable.list-unstyled{ "data-update-url" => "#{sort_snippets_generator_url}" }
+        - @snippets.each do |snippet|
+          = content_tag_for :li, snippet do
             .row.sortable-row 
               .col-xs-12
                 %span.handle.text-muted.padded_icon
                   .fa.fa-bars
-                = generator_snippet.snippet.name
-                = generator_snippet.snippet.description
+                = snippet.name
+                = snippet.description
 
   .content-footer-wrapper
     %ul.list-inline
