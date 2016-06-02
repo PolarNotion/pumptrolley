@@ -11,15 +11,17 @@
     = link_to 'New Snippet', new_snippet_path, class: "btn btn-primary btn-sm"
 
   %ul.nav.nav-tabs
-    %li.active
-      %a{"aria-controls" => "personal", "data-toggle" => "tab", :href => "#personal", :role => "tab"} My Snippets
+    - if current_user
+      %li.active
+        %a{"aria-controls" => "personal", "data-toggle" => "tab", :href => "#personal", :role => "tab"} My Snippets
     %li
-      %a{"aria-controls" => "all", "data-toggle" => "tab", :href => "#all", :role => "tab"} View All
+      %a{"aria-controls" => "all", "data-toggle" => "tab", :href => "#all", :role => "tab"} Public Snippets
 
   / Tab panes
   .tab-content.content-wrapper
-    #personal.tab-pane.active{:role => "tabpanel"}
-      = render "table", snippets: @personal_snippets, nil_notice: "You haven't created any Snippets", anchor: "personal"
+    - if current_user
+      #personal.tab-pane.active{:role => "tabpanel"}
+        = render "table", snippets: @personal_snippets, nil_notice: "You haven't created any Snippets", anchor: "personal"
 
     #all.tab-pane{:role => "tabpanel"}
       = render "table", snippets: @public_snippets, nil_notice: "There are currently no Public Snippets", anchor: "all"

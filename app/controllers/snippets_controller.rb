@@ -1,12 +1,16 @@
 class SnippetsController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :set_snippet, only: [:show, :edit, :update, :destroy]
 
   # GET /snippets
   # GET /snippets.json
   def index
-    @personal_snippets = current_user.snippets.order(is_featured: :desc, name: :asc).all
-    @public_snippets   = Snippet.where.not(author_id: current_user.id).where(is_private: false).order(is_featured: :desc, name: :asc).all
+    if current_user
+      @personal_snippets = current_user.snippets.order(is_featured: :desc, name: :asc).all
+      @public_snippets   = Snippet.where.not(author_id: current_user.id).where(is_private: false).order(is_featured: :desc, name: :asc).all
+    else
+      @public_snippets   = Snippet.all
+    end
   end
 
   # GET /snippets/1
