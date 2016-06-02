@@ -6,7 +6,7 @@ class Generator < ActiveRecord::Base
   
   belongs_to :author, class_name: "User"
 
-  has_many :generator_snippets
+  has_many :generator_snippets, -> {order(position: :asc)}
   has_many :snippets, through: :generator_snippets
 
   validates_presence_of :name

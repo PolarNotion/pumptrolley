@@ -430,6 +430,14 @@ hr.short {
   }
 }
 
+.sortable-row {
+  padding: 5px 0px;
+}
+
+.padded_icon {
+  padding: 0px 15px 0px 5px;
+}
+
 @media only screen and (max-width: 768px) {
   .btn-block-xs {
     width: 100%;

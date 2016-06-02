@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   
   resources :generators,
             path: "templates"
+            
+  post 'sort_generator_snippets' => 'generators#sort_snippets'
   
   resources :snippets
   

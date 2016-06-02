@@ -2,6 +2,15 @@ class GeneratorsController < ApplicationController
   before_action :authenticate_user!, except: [:new, :show]
   before_action :set_generator, only: [:show, :edit, :update, :destroy]
 
+  def sort_snippets
+    params[:generator_snippet].each_with_index do |id, index|
+      generator_snippet = GeneratorSnippet.find(id)
+      generator_snippet.update_attribute(:position, (index + 1)) if generator_snippet
+    end
+    
+    render nothing: true
+  end
+
   # GET /generators
   # GET /generators.json
   def index
@@ -13,6 +22,7 @@ class GeneratorsController < ApplicationController
   # GET /generators/1.json
   def show
     verify_privacy_settings
+    @generator_snippets = @generator.generator_snippets
   end
 
   # GET /generators/new
