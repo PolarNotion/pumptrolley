@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   
   resources :generators,
-            path: "templates"
+            path: "templates" do
+    member do
+      post :sort_snippets
+    end
+  end
   
   resources :snippets
   

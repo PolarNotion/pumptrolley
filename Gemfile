@@ -14,9 +14,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-gem 'jquery-turbolinks'
+gem 'jquery-ui-rails'
 
 gem 'autosize-rails'
 
@@ -33,12 +31,13 @@ gem 'haml-rails', '~> 0.9'
 
 gem 'codemirror-rails', '~> 5.6'
 
-gem 'acts_as_list'
-
 gem 'pg'
 gem 'unicorn'
 gem 'activerecord-postgresql-adapter'
 gem 'rails_12factor'
+
+# Provides the capabilities for sorting and reordering a number of objects in a list
+gem 'acts_as_list'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

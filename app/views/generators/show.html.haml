@@ -14,6 +14,10 @@
       %a{"aria-controls" => "source", "data-toggle" => "tab", :href => "#source", :role => "tab"}
         .fa.fa-code
         Source
+    %li
+      %a{"aria-controls" => "sort", "data-toggle" => "tab", :href => "#sort", :role => "tab"}
+        .fa.fa-sort
+        Sort
 
   / Tab panes
   .tab-content.content-wrapper
@@ -25,6 +29,20 @@
 
     #source.tab-pane.fade.in{:role => "tabpanel"}
       %pre= render @generator
+
+    #sort.tab-pane.fade.in{:role => "tabpanel"}
+      %h3
+        Snippets
+
+      %ul#sortable.list-unstyled{ "data-update-url" => "#{sort_snippets_generator_url}" }
+        - @snippets.each do |snippet|
+          = content_tag_for :li, snippet do
+            .row.sortable-row 
+              .col-xs-12
+                %span.handle.text-muted.padded-icon
+                  .fa.fa-bars
+                = snippet.name
+                = snippet.description
 
   .content-footer-wrapper
     %ul.list-inline

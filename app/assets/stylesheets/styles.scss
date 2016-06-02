@@ -94,7 +94,7 @@ hr.short {
 }
 
 .action-column {
-  width: 200px;
+  width: 300px;
 }
 
 .circle {
@@ -428,6 +428,14 @@ hr.short {
   .checkbox:last-child {
     border-bottom: 0px;
   }
+}
+
+.sortable-row {
+  padding: 5px 0px;
+}
+
+.padded-icon {
+  padding: 0px 15px 0px 5px;
 }
 
 @media only screen and (max-width: 768px) {
