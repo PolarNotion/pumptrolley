@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery.autosize
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require codemirror
 //= require bootstrap
